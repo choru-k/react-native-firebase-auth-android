@@ -1,0 +1,34 @@
+{
+  "name": "react-native-firebase-auth-android",
+  "description": "you can use firebase-auth in react-native",
+  "keywords": [
+    "react",
+    "native",
+    "react-native",
+    "android",
+    "firebase-auth",
+    "firebase"
+  ],
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "lodash": "~4.11.1"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.26.0",
+    "react": ">=15.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.9.0",
+    "eslint-plugin-react": "^5.0.1",
+    "eslint-plugin-react-native": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/g6ling/react-native-firebase-auth-android.git"
+  },
+  "main": "index.js",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/g6ling/react-native-firebase-auth-android"
+}
