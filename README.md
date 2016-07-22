@@ -1,5 +1,11 @@
 # ReactNativeFirebaseAuthAndroid
 
+## firebase setup
+goto firebase console.
+[https://console.firebase.google.com](https://console.firebase.google.com) 
+add android in your project and follow the steps from there.
+
+
 ## Install
 
 `npm install --save 'react-native-firebase-auth-android`
@@ -33,19 +39,45 @@ protected List<ReactPackage> getPackages() {
 
 ## Usage
 ```js
-import FBAuth from 'react-native-firebase-auth-android'
+import FirebaseAuth from 'react-native-firebase-auth-android'
 
-FBAuth.createUserWithEmailAndPassword(email, pw, (token)=>{
-      this.setState({
-        token: token
-      })
+FirebaseAuth.createUserWithEmailAndPassword(email, pw, (user)=>{
+      console.log(user)
+    }, (err) => {
+      console.log(err)
     })
 
-FBAuth.signInWithEmailAndPassword(email, pw, (token)=>{
-      this.setState({
-        token: token
-      })
-    })    
+FirebaseAuth.signInWithEmailAndPassword(email, pw, (user)=>{
+      console.log(user)
+    }, (err) => {
+      console.log(err)
+    })
+FirebaseAuth.getCurrentUser((user)=>{
+      console.log(user)
+    }, (err) => {
+      console.log(err)
+    })
+FirebaseAuth.sendPasswordResetEmail(email, (result)=>{
+      console.log(result)
+    }, (err) => {
+      console.log(err)
+    })
+FirebaseAuth.googleLogin(googleIdToken, (user)=>{
+      console.log(user)
+    }, (err) => {
+      console.log(err)
+    })
+FirebaseAuth.facebookLogin(facebookToken, (user)=>{
+      console.log(user)
+    }, (err) => {
+      console.log(err)
+    })            
 ```
-
-## Now only support `createUserWithEmailAndPassword` and `signInWithEmailAndPassword` and support `token` you cannot get userName, uid.
+```js
+user = {
+  token: String
+  email: String,
+  uid: String, // not save this in local. 
+  provider: String,
+}
+```
