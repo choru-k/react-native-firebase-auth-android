@@ -81,6 +81,8 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getCurrentUser(final Callback onSuccess, final Callback onFail) {
+        mAuth = FirebaseAuth.getInstance();
+
         user = mAuth.getCurrentUser();
         if(user == null){
             onFail.invoke("not logged in");
@@ -91,6 +93,8 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void sendPasswordResetEmail(String email, final Callback onSuccess, final Callback onFail) {
+        mAuth = FirebaseAuth.getInstance();
+
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -106,6 +110,8 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void googleLogin(String IdToken, final Callback onSuccess, final Callback onFail) {
+        mAuth = FirebaseAuth.getInstance();
+
         AuthCredential credential = GoogleAuthProvider.getCredential(IdToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -123,6 +129,8 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void facebookLogin(String Token, final Callback onSuccess, final Callback onFail) {
+        mAuth = FirebaseAuth.getInstance();
+
         AuthCredential credential = FacebookAuthProvider.getCredential(Token);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -139,6 +147,7 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
     }
 
     public void userCallback(final Callback onSuccess) {
+        mAuth = FirebaseAuth.getInstance();
 
         user.getToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
             @Override
