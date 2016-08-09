@@ -55,7 +55,7 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
                             user = task.getResult().getUser();
                             userCallback(onSuccess);
                         }else{
-                            onFail.invoke(task.getException().toString());
+                            userErrorCallback(task, onFail);
                         }
                     }
                 });
@@ -72,8 +72,8 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
                         if (task.isSuccessful()) {
                             user = task.getResult().getUser();
                             userCallback(onSuccess);
-                        }else{
-                            onFail.invoke(task.getException().toString());
+                        } else {
+                            userErrorCallback(task, onFail);
                         }
                     }
                 });
@@ -121,7 +121,7 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
                             user = task.getResult().getUser();
                             userCallback(onSuccess);
                         }else{
-                            onFail.invoke(task.getException().toString());
+                            userErrorCallback(task, onFail);
                         }
                     }
                 });
@@ -140,7 +140,7 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
                             user = task.getResult().getUser();
                             userCallback(onSuccess);
                         }else{
-                            onFail.invoke(task.getException().toString());
+                            userErrorCallback(task, onFail);
                         }
                     }
                 });
@@ -162,6 +162,15 @@ class ReactNativeFirebaseAuthAndroidModule extends ReactContextBaseJavaModule {
                 onSuccess.invoke(userMap);
             }
         });
+    }
 
+    public void userErrorCallback(Task<AuthResult> task, final Callback onFail) {
+
+        WritableMap error = Arguments.createMap();
+        error.putInt("errorCode", task.getException().hashCode());
+        error.putString("errorMessage", task.getException().getMessage());
+        error.putString("allErrorMessage", task.getException().toString());
+
+        onFail.invoke(error);
     }
 }

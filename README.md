@@ -80,4 +80,9 @@ user = {
   uid: String, // not save this in local. 
   provider: String,
 }
+err = {
+  errorCode: Int,
+  errorMessage: String,
+  allErrorMessage: String
+}
 ```
